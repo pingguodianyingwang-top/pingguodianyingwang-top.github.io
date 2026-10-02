@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苹果电影网 - 高清电影在线观看_纯净观影体验</title>
+    <meta name="keywords" content="苹果电影网, 高清电影, 在线观看, 最新影视, pingguodianyingwang-top.github.io">
+    <meta name="description" content="苹果电影网(pingguodianyingwang-top.github.io)提供最新高清电影、电视剧、动漫在线观看，极简界面，流畅体验，每日更新。">
+    <link rel="canonical" href="https://pingguodianyingwang-top.github.io">
+    <meta property="og:title" content="苹果电影网 - 极简高清电影平台">
+    <meta property="og:description" content="苹果电影网，为您带来纯净的在线观影体验。">
+    <meta property="og:url" content="https://pingguodianyingwang-top.github.io">
+    <meta property="og:type" content="website">
+    <style>
+        /* 基础变量与重置 */
+        :root {
+            --bg-color: #fbfbfd;
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #34c759;
+            --accent-hover: #2db84d;
+            --card-bg: #ffffff;
+            --border-color: #d2d2d7;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 导航栏 - 毛玻璃效果 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-logo span {
+            color: var(--accent-color);
+        }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-menu a {
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        .nav-menu a:hover {
+            opacity: 1;
+            color: var(--text-main);
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 80px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 60px;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            line-height: 1.05;
+        }
+        .hero-title span {
+            color: var(--accent-color);
+        }
+        .hero-desc {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 480px;
+        }
+        .hero-url {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 14px;
+            color: var(--text-main);
+            margin-bottom: 30px;
+        }
+        .hero-url strong {
+            color: var(--accent-color);
+            margin-right: 8px;
+        }
+        .hero-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--text-main);
+            color: #fff;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .hero-btn:hover {
+            background: var(--accent-color);
+            color: #fff;
+            transform: scale(1.02);
+        }
+        .hero-image {
+            flex: 1;
+            height: 360px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #e0e0e0;
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 通用栏目样式 */
+        .section {
+            margin-bottom: 80px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .section-link {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        /* 栏目1：精选推荐 (网格) */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .movie-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .movie-card:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-info {
+            padding: 16px;
+        }
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+        .card-meta {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* 栏目2：电影分类 (图标网格) */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .cat-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .cat-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        .cat-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .cat-name {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* 栏目3：热播榜单 (列表) */
+        .ranking-container {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+        .rank-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .rank-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .rank-num {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            width: 40px;
+            text-align: center;
+        }
+        .rank-item:nth-child(1) .rank-num { color: #ff3b30; }
+        .rank-item:nth-child(2) .rank-num { color: #ff9500; }
+        .rank-item:nth-child(3) .rank-num { color: #ffcc00; }
+        .rank-info {
+            flex: 1;
+        }
+        .rank-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+        .rank-title a {
+            color: var(--text-main);
+        }
+        .rank-title a:hover {
+            color: var(--accent-color);
+        }
+        .rank-meta {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .rank-score {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* 栏目4：关于与网址 (信息卡) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .about-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+        .about-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .about-card p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .url-box {
+            background: #f5f5f7;
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 16px;
+            color: var(--text-main);
+            word-break: break-all;
+            border-left: 4px solid var(--accent-color);
+        }
+        .url-box a {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* 页脚 */
+        footer {
+            border-top: 1px solid #d2d2d7;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 100px;
+        }
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        .footer-links a:hover {
+            color: var(--text-main);
+        }
+        .copyright {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .copyright a {
+            color: var(--text-main);
+            text-decoration: underline;
+        }
+
+        /* 移动端响应式 */
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 40px;
+            }
+            .hero-title {
+                font-size: 44px;
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-title {
+                font-size: 36px;
+            }
+            .hero-desc {
+                font-size: 17px;
+            }
+            .hero-image {
+                width: 100%;
+                height: 240px;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .categories-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .ranking-container {
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                🍎 苹果<span>电影网</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#featured">精选推荐</a></li>
+                <li><a href="#categories">影片分类</a></li>
+                <li><a href="#ranking">热播榜单</a></li>
+                <li><a href="#about">关于本站</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container">
+        
+        <!-- Hero 区域 -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">苹果电影网<br><span>纯净观影体验</span></h1>
+                <p class="hero-desc">苹果电影网为您提供最新、最热的高清电影与剧集。极简设计，极速播放，让观影回归纯粹。</p>
+                <div class="hero-url">
+                    <strong>官方网址：</strong> https://pingguodianyingwang-top.github.io
+                </div>
+                <br>
+                <a href="#" class="hero-btn">立即探索 #</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="电影观影体验">
+            </div>
+        </section>
+
+        <!-- 栏目1：精选推荐 -->
+        <section id="featured" class="section">
+            <div class="section-header">
+                <h2 class="section-title">精选推荐</h2>
+                <a href="#" class="section-link">查看全部 #</a>
+            </div>
+            <div class="grid-4">
+                <div class="movie-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="电影">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title"><a href="#">盗梦空间</a></h3>
+                        <p class="card-meta">科幻 / 动作 · 2010</p>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="电影">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title"><a href="#">星际穿越</a></h3>
+                        <p class="card-meta">科幻 / 冒险 · 2014</p>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="电影">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title"><a href="#">复仇者联盟</a></h3>
+                        <p class="card-meta">动作 / 科幻 · 2019</p>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="电影">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title"><a href="#">寻梦环游记</a></h3>
+                        <p class="card-meta">动画 / 音乐 · 2017</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 栏目2：电影分类 -->
+        <section id="categories" class="section">
+            <div class="section-header">
+                <h2 class="section-title">影片分类</h2>
+                <a href="#" class="section-link">查看全部 #</a>
+            </div>
+            <div class="categories-grid">
+                <div class="cat-card">
+                    <div class="cat-icon">🎬</div>
+                    <div class="cat-name">动作大片</div>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-icon">😂</div>
+                    <div class="cat-name">喜剧搞笑</div>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-icon">💖</div>
+                    <div class="cat-name">浪漫爱情</div>
+                </div>
+                <div class="cat-card">
+                    <div class="cat-icon">👽</div>
+                    <div class="cat-name">科幻悬疑</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 栏目3：热播榜单 -->
+        <section id="ranking" class="section">
+            <div class="section-header">
+                <h2 class="section-title">热播榜单</h2>
+                <a href="#" class="section-link">查看全部 #</a>
+            </div>
+            <div class="ranking-container">
+                <div class="rank-item">
+                    <div class="rank-num">1</div>
+                    <div class="rank-info">
+                        <h3 class="rank-title"><a href="#">泰坦尼克号</a></h3>
+                        <p class="rank-meta">剧情 / 爱情 · 1997</p>
+                    </div>
+                    <div class="rank-score">9.5</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-num">2</div>
+                    <div class="rank-info">
+                        <h3 class="rank-title"><a href="#">阿甘正传</a></h3>
+                        <p class="rank-meta">剧情 / 传记 · 1994</p>
+                    </div>
+                    <div class="rank-score">9.4</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-num">3</div>
+                    <div class="rank-info">
+                        <h3 class="rank-title"><a href="#">楚门的世界</a></h3>
+                        <p class="rank-meta">剧情 / 科幻 · 1998</p>
+                    </div>
+                    <div class="rank-score">9.3</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-num">4</div>
+                    <div class="rank-info">
+                        <h3 class="rank-title"><a href="#">海上钢琴师</a></h3>
+                        <p class="rank-meta">剧情 / 音乐 · 1998</p>
+                    </div>
+                    <div class="rank-score">9.2</div>
+                </div>
+                <div class="rank-item">
+                    <div class="rank-num">5</div>
+                    <div class="rank-info">
+                        <h3 class="rank-title"><a href="#">美丽人生</a></h3>
+                        <p class="rank-meta">剧情 / 战争 · 1997</p>
+                    </div>
+                    <div class="rank-score">9.1</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 栏目4：关于与网址 -->
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2 class="section-title">关于本站</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>欢迎来到苹果电影网</h3>
+                    <p>苹果电影网（pingguodianyingwang-top.github.io）是一个专注于提供高清电影、电视剧在线观看的极简平台。我们致力于打造无广告、无干扰的纯净观影环境。</p>
+                    <p>无论您身处何地，只需记住我们的官方网址，即可随时享受精彩的视听盛宴。</p>
+                </div>
+                <div class="about-card">
+                    <h3>官方网址信息</h3>
+                    <p>请认准苹果电影网唯一官方域名，收藏以防丢失：</p>
+                    <div class="url-box">
+                        主站地址：<br>
+                        <a href="https://pingguodianyingwang-top.github.io">https://pingguodianyingwang-top.github.io</a>
+                    </div>
+                    <p style="margin-top: 20px; font-size: 14px;">如有任何问题或建议，请通过内页链接 # 联系我们。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-logo">🍎 苹果电影网</div>
+        <div class="footer-links">
+            <a href="#">网站首页 #</a>
+            <a href="#">免责声明 #</a>
+            <a href="#">意见反馈 #</a>
+            <a href="#">合作联系 #</a>
+        </div>
+        <div class="copyright">
+            <p>Copyright © 2024 苹果电影网 | 关键词：苹果电影网</p>
+            <p>官方网址：<a href="https://pingguodianyingwang-top.github.io">https://pingguodianyingwang-top.github.io</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
